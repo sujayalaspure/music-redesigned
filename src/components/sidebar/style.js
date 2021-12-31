@@ -65,6 +65,8 @@ export const MenuItem = styled.div`
   position: relative;
   color: ${(_) => (_._active ? COLORS.text.light : COLORS.text.primary)};
   cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+
   .dot-before {
     position: absolute;
     left: -10px;
@@ -95,12 +97,18 @@ export const SidebarFooter = styled.div`
     display: flex;
     align-items: center;
     margin-top: 8px;
+    border-radius: 4px;
+    transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+
     img {
       width: 50px;
       height: 50px;
       border-radius: 50%;
       padding: 2px;
       border: 1px solid ${COLORS.text.dark};
+    }
+    &:hover {
+      background-color: ${COLORS.bg.secondary}55;
     }
 
     .profile-content {
