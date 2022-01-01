@@ -2,11 +2,15 @@ import styled from "styled-components";
 import COLORS from "../../../utils/colors";
 
 export const MusicItemContainer = styled.div`
-  display: flex;
+  display: grid;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
+  grid-template-columns: max-content auto max-content;
   padding: 4px 0;
   padding-right: 16px;
+  cursor: pointer;
+  ${(_) => _.playing && "border:2px dotted red"};
+  border-radius: 8px;
   .last {
     display: flex;
     align-items: center;
@@ -14,7 +18,8 @@ export const MusicItemContainer = styled.div`
   .first {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
+    width: 250px;
   }
 
   &:hover {
@@ -24,15 +29,15 @@ export const MusicItemContainer = styled.div`
 
 export const MusicTitle = styled.h4`
   margin-left: 8px;
+  flex-wrap: nowrap;
 `;
 
 export const MusicThumbnail = styled.img`
   height: 40px;
+  width: 50px;
   border-radius: 4px;
   display: block;
 `;
-
-export const MusicDescription = styled.div``;
 
 export const MusicArtist = styled.p`
   margin-left: 8px;

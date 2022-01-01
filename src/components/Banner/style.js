@@ -7,6 +7,7 @@ export const TopBanner = styled.div`
   overflow: hidden;
   border-radius: 14px;
   position: relative;
+  margin: 0 16px;
   img {
     max-width: 100%;
     display: block;

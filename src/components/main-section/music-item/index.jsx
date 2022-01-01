@@ -9,28 +9,26 @@ import {
   MusicItemContainer,
   MusicTitle,
   MusicThumbnail,
-  MusicDescription,
   MusicArtist,
   MusicDuration,
   CTA,
 } from "./style";
+import IconButton from "../../IconButton";
 
-const MusicItem = () => {
+const MusicItem = ({ playing, song, setCurrentSong }) => {
   return (
-    <MusicItemContainer>
+    <MusicItemContainer playing={playing} onClick={() => setCurrentSong(song)}>
       <div className="first">
-        <MusicThumbnail src="https://i.ytimg.com/vi/QH2-TGUlwu4/default.jpg" />
-        <MusicTitle>Take My Breath</MusicTitle>
+        <MusicThumbnail src={song.imgSrc} />
+        <MusicTitle>{song.songName}</MusicTitle>
       </div>
-      <MusicArtist> A. R. Rehman </MusicArtist>
+      <MusicArtist>{song.artist} </MusicArtist>
       <div className="last">
         <MusicDuration>3:20</MusicDuration>
         <CTA>
           <FavoriteBorder size={24} />
         </CTA>
-        <CTA more>
-          <MoreVert size={24} />
-        </CTA>
+        <IconButton Icon={MoreVert} size={24} />
       </div>
     </MusicItemContainer>
   );

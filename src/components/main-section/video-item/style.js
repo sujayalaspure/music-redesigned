@@ -7,7 +7,7 @@ export const Container = styled.div`
   grid-template-columns: max-content auto max-content;
 
   padding: 8px 16px;
-  background-color: ${COLORS.bg.secondary}99;
+  background-color: ${COLORS.bg.secondary}55;
   border-radius: 8px;
   margin-bottom: 8px;
   .content {

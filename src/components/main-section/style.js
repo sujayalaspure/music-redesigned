@@ -7,11 +7,11 @@ export const MainContentWrapper = styled.div`
   border-left: 1px solid #4f1e0daa;
   overflow-y: scroll;
   position: relative;
-  padding: 16px 16px 16px;
+  padding-top: 16px;
 `;
 
 export const MusicSection = styled.div`
-  margin-top: 32px;
+  margin: 32px 16px 16px;
   display: grid;
   grid-template-columns: auto max-content;
 `;
@@ -28,6 +28,7 @@ export const VideoContainer = styled.div`
   border: 1px solid #4f1e0daa;
   border-radius: 8px;
   overflow-y: scroll;
+  max-height: 50vh;
 `;
 
 export const Divider = styled.div`
