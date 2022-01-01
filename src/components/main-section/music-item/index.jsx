@@ -16,8 +16,15 @@ import {
 import IconButton from "../../IconButton";
 
 const MusicItem = ({ playing, song, setCurrentSong }) => {
+  console.log("LOG> [music-item/index.jsx:19] song --->", song);
   return (
-    <MusicItemContainer playing={playing} onClick={() => setCurrentSong(song)}>
+    <MusicItemContainer
+      available={song.song ? true : false}
+      playing={playing}
+      onClick={() => {
+        song.song && setCurrentSong(song);
+      }}
+    >
       <div className="first">
         <MusicThumbnail src={song.imgSrc} />
         <MusicTitle>{song.songName}</MusicTitle>

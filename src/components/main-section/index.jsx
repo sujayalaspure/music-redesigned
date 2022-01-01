@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   MainContentWrapper,
   MusicContainer,
@@ -12,18 +12,35 @@ import HeadingAndCTA from "../HeadingAndCTA";
 import VideoItem from "./video-item";
 import Player from "../player";
 import { Songs } from "../../songs";
+import { useGetRadioChannelsQuery } from "../../services/radioApi";
 
 const MainSection = () => {
-  const [songs, setsongs] = useState(Songs);
-  const [currentSong, setCurrentSong] = useState({
-    id: 1,
-    favourite: false,
-    songName: "Bella Ciao",
-    artist: "El Profesor",
-    song: "https://firebasestorage.googleapis.com/v0/b/spotify-clone-7a2ef.appspot.com/o/Ringtone%2Fbellaciao.mp3?alt=media&token=e1dd8233-3521-4574-8957-d51af9a5db5c",
-    imgSrc:
-      "https://firebasestorage.googleapis.com/v0/b/spotify-clone-7a2ef.appspot.com/o/Images%2Fmoneyheist.jpg?alt=media&token=32baf3d7-0ab5-47d5-ba48-554792cea117",
+  const { data: radioChannels, isFetching } = useGetRadioChannelsQuery({
+    keyWord: "a",
   });
+  console.log("LOG> [main-section/index.jsx:21]  --->", radioChannels);
+  const [songs, setsongs] = useState([]);
+  const [currentSong, setCurrentSong] = useState({});
+
+  useEffect(() => {
+    if (!isFetching) {
+      const channels = radioChannels?.data
+        .filter((channel) => channel.https_url.length > 0)
+        .map((channel) => ({
+          id: channel.id,
+          favourite: false,
+          songName: channel.name,
+          artist: channel.country,
+          song: channel.https_url.find(
+            (url) => url.last_test_result === "worked"
+          )?.url,
+          imgSrc: channel.logo.s88x88,
+        }));
+      console.log("LOG> [main-section/index.jsx:44] channels --->", channels);
+      setsongs(channels);
+      setCurrentSong(channels[0]);
+    }
+  }, [isFetching, radioChannels]);
 
   return (
     <MainContentWrapper>
@@ -47,13 +64,6 @@ const MainSection = () => {
         </MusicContainer>
         <VideoContainer>
           <HeadingAndCTA title={"Videos"} />
-          <VideoItem />
-          <VideoItem />
-          <VideoItem />
-          <VideoItem />
-          <VideoItem />
-          <VideoItem />
-          <VideoItem />
           <VideoItem />
           <VideoItem />
           <VideoItem />

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   PauseCircleFilled,
   PlayCircleFilled,
@@ -18,68 +18,36 @@ import {
 } from "./style";
 import ProgressBar from "./ProgressBar";
 import IconButton from "../IconButton";
-import { toHHMMSS } from "../../utils/helperFunctions";
+import { calculateTime } from "../../utils/helperFunctions";
 const Player = ({ currentSong }) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [currentTime, setCurrentTime] = useState({
-    currentTime: 0,
-    duration: 0,
-    percentage: 0,
-  });
+  const [duration, setDuration] = useState(0);
+  const [currentTime, setCurrenttime] = useState(0);
 
-  const audioPlayer = useRef(); //   reference to our audio component
-  const progressBar = useRef(); //   reference to our prgressbar
-  const animationRef = useRef(); //  reference to our animation
+  const audioPlayer = useRef();
 
-  const audio = useMemo(() => new Audio(currentSong.url), [currentSong.id]);
+  useEffect(() => {
+    const seconds = Math.floor(audioPlayer.current.duration);
+    setDuration(seconds);
+  }, [audioPlayer?.current?.loadedmetada, audioPlayer?.current?.readyState]);
 
-  const updateTime = () => {
-    const currentTime = Math.floor(audio.currentTime);
-    const duration = Math.floor(audio.duration);
-
-    setCurrentTime({
-      currentTime,
-      duration,
-      percentage: Math.floor((currentTime * 100) / duration),
-    });
+  const PlayPause = () => {
+    const prevValue = isPlaying;
+    setIsPlaying(!prevValue);
+    prevValue ? audioPlayer.current.pause() : audioPlayer.current.play();
   };
 
-  // useEffect(() => {
-  //   setAudio(new Audio(currentSong.song));
-  // }, [currentSong.id]);
-
   useEffect(() => {
-    const play = () => {
-      audio.currentTime = currentTime.currentTime;
-      audio.play();
-    };
-    isPlaying ? play() : audio.pause();
-  }, [isPlaying]);
-
-  useEffect(() => {
+    var audio = document.getElementById("track");
     audio.addEventListener(
       "timeupdate",
-      (event) => {
-        updateTime();
+      function () {
+        var currentTimeMs = audio.currentTime;
+        setCurrenttime(currentTimeMs);
       },
       false
     );
-    audio.addEventListener("ended", () => setIsPlaying(false));
-    return () => {
-      audio.addEventListener(
-        "timeupdate",
-        (event) => {
-          updateTime();
-        },
-        false
-      );
-      audio.removeEventListener("ended", () => setIsPlaying(false));
-    };
   }, []);
-
-  const PlayPause = () => {
-    setIsPlaying(!isPlaying);
-  };
 
   const NextPlay = () => {};
 
@@ -89,42 +57,43 @@ const Player = ({ currentSong }) => {
 
   return (
     <PlayerWrapper>
-      <ProgressBar progress={currentTime.percentage} />
+      <ProgressBar progress={(currentTime * 100) / duration} />
+      <audio
+        id="track"
+        src={currentSong.song}
+        preload="metadata"
+        ref={audioPlayer}
+      />
       <div className="conent">
-        <audio src={currentSong.url} preload="metadata" ref={audioPlayer}>
-          <div className="first">
-            <MusicThumbnail src={currentSong.imgSrc} />
-            <MusicInfo>
-              <Title>{currentSong.songName}</Title>
-              <Artist>{currentSong.artist}</Artist>
-            </MusicInfo>
-          </div>
-          <PlayerControls>
-            <IconButton onClick={PrevPlay} Icon={SkipPrevious} size={28} />
-            {isPlaying ? (
-              <IconButton
-                onClick={PlayPause}
-                Icon={PauseCircleFilled}
-                size={48}
-              />
-            ) : (
-              <IconButton
-                onClick={PlayPause}
-                Icon={PlayCircleFilled}
-                size={48}
-              />
-            )}
-            {/* <IconButton onClick={PlayPause} Icon={PlayCircleFilled} size={48} /> */}
-            <IconButton onClick={NextPlay} Icon={SkipNext} size={28} />
-          </PlayerControls>
-          <OtherInfo>
-            <span>
-              {toHHMMSS(currentTime.currentTime)}/{" "}
-              {toHHMMSS(currentTime.duration)}
-            </span>
-            <IconButton onClick={Mute} Icon={VolumeUp} size={24} />
-          </OtherInfo>
-        </audio>
+        <div className="first">
+          <MusicThumbnail src={currentSong.imgSrc} />
+          <MusicInfo>
+            <Title>{currentSong.songName}</Title>
+            <Artist>{currentSong.artist}</Artist>
+          </MusicInfo>
+        </div>
+        <PlayerControls>
+          <IconButton onClick={PrevPlay} Icon={SkipPrevious} size={28} />
+          {isPlaying ? (
+            <IconButton
+              onClick={PlayPause}
+              Icon={PauseCircleFilled}
+              size={48}
+            />
+          ) : (
+            <IconButton onClick={PlayPause} Icon={PlayCircleFilled} size={48} />
+          )}
+          <IconButton onClick={NextPlay} Icon={SkipNext} size={28} />
+        </PlayerControls>
+        <OtherInfo>
+          <span>
+            {calculateTime(currentTime)}/{" "}
+            {duration != "Infinity" && !isNaN(duration)
+              ? calculateTime(duration)
+              : "00:00"}
+          </span>
+          <IconButton onClick={Mute} Icon={VolumeUp} size={24} />
+        </OtherInfo>
       </div>
     </PlayerWrapper>
   );

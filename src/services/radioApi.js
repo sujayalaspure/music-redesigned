@@ -1,31 +1,31 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const cryptoNewsHeaders = {
-  "x-bingapis-sdk": "true",
-  "x-rapidapi-host": "bing-news-search1.p.rapidapi.com",
-  "x-rapidapi-key": "4e6766ff03msh8c00a941a00bd62p1f5d5ejsn6094a5b56fcf",
+const radioHeaders = {
+  "x-rapidapi-host": process.env.REACT_APP_RADIO_HOST,
+  "x-rapidapi-key": process.env.REACT_APP_RADIO_API_KEY,
 };
 
-const baseUrl = "https://bing-news-search1.p.rapidapi.com";
+const baseUrl = process.env.REACT_APP_RADIO_BASE_URL;
+// const baseUrl = "https://50k-radio-stations.p.rapidapi.com";
 
 const createRequest = (url) => ({
   url,
-  headers: cryptoNewsHeaders,
+  headers: radioHeaders,
 });
-export const cryptoNewsApi = createApi({
-  reducerPath: "cryptoNewsApi",
+export const radioApi = createApi({
+  reducerPath: "radioApi",
   baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: (builder) => ({
-    getCryptoNews: builder.query({
-      query: ({ newsCategory, count }) =>
+    getRadioChannels: builder.query({
+      query: ({ keyWord, page = 1 }) =>
         createRequest(
-          `/news/search?q=${newsCategory}&safeSearch=Off&textFormat=Raw&freshness=Day&count=${count}`
+          `get/channels?keyword=${keyWord}&country_id=14&page=${page}`
         ),
     }),
   }),
 });
 
-export const { useGetCryptoNewsQuery } = cryptoNewsApi;
+export const { useGetRadioChannelsQuery } = radioApi;
 
 // var options = {
 //   method: "GET",

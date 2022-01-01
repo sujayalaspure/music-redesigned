@@ -2,6 +2,8 @@ import styled from "styled-components";
 import COLORS from "../../../utils/colors";
 
 export const MusicItemContainer = styled.div`
+  /* ${(_) => _.available && "background-color:red"} */
+  background-color: ${(_) => (_.available ? "transparent" : "red")};
   display: grid;
   align-items: center;
   /* justify-content: space-between; */
@@ -19,7 +21,7 @@ export const MusicItemContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    width: 250px;
+    width: 300px;
   }
 
   &:hover {
