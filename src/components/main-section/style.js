@@ -8,6 +8,12 @@ export const MainContentWrapper = styled.div`
   overflow-y: scroll;
   position: relative;
   padding-top: 16px;
+
+  .player {
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+  }
 `;
 
 export const MusicSection = styled.div`

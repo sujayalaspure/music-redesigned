@@ -67,9 +67,16 @@ const MainSection = () => {
           <VideoItem />
           <VideoItem />
           <VideoItem />
+          <VideoItem />
+          <VideoItem />
+          <VideoItem />
+          <VideoItem />
+          <VideoItem />
         </VideoContainer>
       </MusicSection>
-      <Player currentSong={currentSong} />
+      <div className="player">
+        <Player currentSong={currentSong} />
+      </div>
     </MainContentWrapper>
   );
 };

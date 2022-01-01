@@ -1,4 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import {
   SidebarContainer,
   SidebarHeader,
@@ -21,16 +23,17 @@ import {
 } from "@styled-icons/material-rounded";
 
 const menuItemsInit = [
-  { id: "1", active: true, title: "Home", Icon: Home },
-  { id: "2", title: "Discover", Icon: Explore },
-  { id: "3", title: "Likes", Icon: Favorite },
-  { id: "4", title: "Podcast", Icon: Podcasts },
-  { id: "5", title: "Radio", Icon: Radio },
-  { id: "6", title: "Profile", Icon: Person },
+  { id: "1", link: "/", active: true, title: "Home", Icon: Home },
+  { id: "2", link: "discover", title: "Discover", Icon: Explore },
+  { id: "3", link: "", title: "Likes", Icon: Favorite },
+  { id: "4", link: "", title: "Podcast", Icon: Podcasts },
+  { id: "5", link: "radio", title: "Radio", Icon: Radio },
+  { id: "6", link: "", title: "Profile", Icon: Person },
 ];
 
 const Sidebar = () => {
   const [menuItems, setmenuItems] = useState(menuItemsInit);
+  let navigate = useNavigate();
 
   const selectMenuItem = (id) => {
     setmenuItems(
@@ -63,7 +66,10 @@ const Sidebar = () => {
             <MenuItem
               _active={item.active}
               key={item.id}
-              onClick={() => selectMenuItem(item.id)}
+              onClick={() => {
+                selectMenuItem(item.id);
+                navigate(item.link);
+              }}
             >
               {item.active && <div className="dot-before" />}
               <item.Icon size={24} />
