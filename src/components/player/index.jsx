@@ -74,15 +74,12 @@ const Player = ({ currentSong }) => {
         </div>
         <PlayerControls>
           <IconButton onClick={PrevPlay} Icon={SkipPrevious} size={28} />
-          {isPlaying ? (
-            <IconButton
-              onClick={PlayPause}
-              Icon={PauseCircleFilled}
-              size={48}
-            />
-          ) : (
-            <IconButton onClick={PlayPause} Icon={PlayCircleFilled} size={48} />
-          )}
+          <IconButton
+            onClick={PlayPause}
+            Icon={isPlaying ? PauseCircleFilled : PlayCircleFilled}
+            size={48}
+          />
+
           <IconButton onClick={NextPlay} Icon={SkipNext} size={28} />
         </PlayerControls>
         <OtherInfo>

@@ -17,15 +17,16 @@ export const radioApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: (builder) => ({
     getRadioChannels: builder.query({
-      query: ({ keyWord, page = 1 }) =>
-        createRequest(
-          `get/channels?keyword=${keyWord}&country_id=14&page=${page}`
-        ),
+      query: ({ country = 14, page = 1 }) =>
+        createRequest(`/get/channels?country_id=${country}&page=${page}`),
+    }),
+    getCountries: builder.query({
+      query: () => createRequest(`/get/countries`),
     }),
   }),
 });
 
-export const { useGetRadioChannelsQuery } = radioApi;
+export const { useGetRadioChannelsQuery, useGetCountriesQuery } = radioApi;
 
 // var options = {
 //   method: "GET",
