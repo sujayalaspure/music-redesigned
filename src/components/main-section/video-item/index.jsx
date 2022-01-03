@@ -14,11 +14,11 @@ const VideoItem = () => {
       <VideoThumbnail
         height={9 * ratio}
         width={16 * ratio}
-        src="https://lh3.googleusercontent.com/jr0qPex-GejCU3ZIOmVYgNxGV3qqWaSpd_lJxeYhLMECEj66QymsTpysvefmNUgegZhfwvlVZ4auZTtMfDy6TiwSJbIVlWmO46tnPdSN"
+        src="https://i.ytimg.com/vi/uPD0QOGTmMI/maxresdefault.jpg"
       />
       <div className="content">
-        <VideoTitle>Video</VideoTitle>
-        <VideoSource>Sara Ali</VideoSource>
+        <VideoTitle>Die For you</VideoTitle>
+        <VideoSource>The Weekend</VideoSource>
       </div>
       <CTA>
         <MoreVert size={24} />

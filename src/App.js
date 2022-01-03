@@ -2,7 +2,7 @@ import React from "react";
 import MainSection from "./components/main-section";
 import Sidebar from "./components/sidebar";
 import { Routes, Route } from "react-router-dom";
-import { AppContainer, AppWrapper } from "./style";
+import { AppContainer, AppWrapper, FooterDiv } from "./style";
 import Radio from "./components/radio";
 
 const App = () => {
@@ -17,6 +17,11 @@ const App = () => {
         </Routes>
         {/* <MainSection /> */}
       </AppContainer>
+      <FooterDiv>
+        <a href="https://github.com/alaspuresujay/music-redesigned">
+          Made with <span>♥</span> by Sujay Alaspure
+        </a>
+      </FooterDiv>
     </AppWrapper>
   );
 };

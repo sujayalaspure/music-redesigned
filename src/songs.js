@@ -6,7 +6,7 @@ const Songs = [
     artist: "India",
     song: "https://stream-al.planetradio.co.uk/city.mp3",
     imgSrc:
-      "https://firebasestorage.googleapis.com/v0/b/spotify-clone-7a2ef.appspot.com/o/Images%2Fmoneyheist.jpg?alt=media&token=32baf3d7-0ab5-47d5-ba48-554792cea117",
+      "https://store-images.s-microsoft.com/image/apps.51698.13510798886370928.9f680c41-71a4-49b5-938e-ad60e8f2bf5e.75a688ca-b4d6-4cd5-924e-74e6944bbf54?mode=scale&q=90&h=300&w=300",
   },
   {
     id: 1,

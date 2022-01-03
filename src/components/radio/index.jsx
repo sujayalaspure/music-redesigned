@@ -119,7 +119,7 @@ const Radio = () => {
           <SectionBox>Local Channels</SectionBox>
           <SectionBox>
             <Heading>
-              <h2>Genre - {selectedCountry.country}</h2>
+              <h2>Genre</h2>
               <SearchBox
                 placeholder={"Search Genre"}
                 handleInput={handleGenFilter}
