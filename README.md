@@ -19,9 +19,11 @@ Built using ReactJs, Styled-components, RapidAPI
 ## HomePage UI
 
 > Designed By [@Mahdi.design](https://dribbble.com/mahdigolizade)
+
 > <img height='200px' src='https://cdn.dribbble.com/users/5080573/screenshots/17147578/media/71a6eb73cec9e79bc790aae08b377e7c.png' />
 
 ## Podcast UI
 
 > Designed By [@Syed Raju](https://dribbble.com/shots/12187493/attachments/3808451?mode=media)
+
 > <img src='https://cdn.dribbble.com/users/941250/screenshots/12187493/media/52799da4bae0d8a577b155ea6d841a54.png' height='180px' />
