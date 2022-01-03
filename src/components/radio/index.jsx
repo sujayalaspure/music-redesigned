@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 
-import { Search } from "@styled-icons/material-rounded";
 import {
   useGetCountriesQuery,
+  useGetGenresQuery,
   useGetRadioChannelsQuery,
 } from "../../services/radioApi";
 import Banner from "../Banner";
-import IconButton from "../IconButton";
 import Player from "../player";
 import {
   ChannelSection,
@@ -16,10 +15,12 @@ import {
   MiddleSection,
   RightSection,
   SectionBox,
-  CountryListWrapper,
   ChannelListSection,
 } from "./style";
-import { useRef } from "react";
+import SearchAndList from "../SearchAndList";
+import GenreSection from "./GenreSection";
+import { Genre } from "./tempData";
+import SearchBox from "../SearchBox";
 
 const imgSrc =
   "https://images.unsplash.com/photo-1590845947670-c009801ffa74?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2659&q=80";
@@ -34,32 +35,19 @@ const Radio = () => {
     data: radioChannels,
     error,
     isLoading,
-  } = useGetRadioChannelsQuery({
-    country: selectedCountry.id,
-  });
-  const { data: countryList } = useGetCountriesQuery();
+  } = useGetRadioChannelsQuery(
+    {
+      country: selectedCountry.id,
+    },
+    { skip: false }
+  );
+  const { data: genereData } = useGetGenresQuery(null, { skip: true });
+  const { data: countryList } = useGetCountriesQuery(null, { skip: true });
   const [currentSong, setCurrentSong] = useState({});
-  const [countries, setcountries] = useState([]);
-  const [showCountry, setShowCountry] = useState(false);
-
-  const inputRef = useRef();
-  const searchCountry = (e) => {
-    const { value } = e.target;
-    if (value) {
-      setShowCountry(true);
-      const filteredCountries = countryList?.data.filter((country) =>
-        country.country.toLowerCase().includes(value.toLowerCase())
-      );
-      setcountries(filteredCountries);
-    } else {
-      setShowCountry(false);
-    }
-  };
-
+  const [genereListData, setGenereData] = useState(Genre?.data);
+  const [selectedGen, setSelectedGen] = useState(null);
   const selectCountry = (country) => {
     setSelectedCountry(country);
-    setShowCountry(false);
-    inputRef.current.value = country.country;
   };
 
   const playRadio = (channel) => {
@@ -76,40 +64,39 @@ const Radio = () => {
       setCurrentSong(temp);
     }
   };
+
+  const handleGenFilter = (e) => {
+    const { value } = e.target;
+    if (value) {
+      const filteredOptions = Genre?.data.filter((option) =>
+        option.name.toLowerCase().includes(value.toLowerCase())
+      );
+      setGenereData(filteredOptions);
+    } else {
+      //  setshowList(false);
+    }
+  };
   return (
     <MainContentWrapper>
       <Banner imgSrc={imgSrc} />
 
       <MiddleSection>
         <ChannelSection>
-          {showCountry && (
-            <CountryListWrapper>
-              {console.log(countries)}
-              {countries?.map(({ country, id }) => (
-                <li
-                  onClick={() => {
-                    selectCountry({ country, id });
-                  }}
-                  key={id}
-                >
-                  {country}
-                </li>
-              ))}
-            </CountryListWrapper>
-          )}
           <Heading>
             <h2>Channels - {selectedCountry.country}</h2>
-            <div className="searchbar">
-              <input
-                ref={inputRef}
-                onChange={searchCountry}
-                placeholder="Search By Country"
-              />
-              <Search size={24} />
-            </div>
+            <SearchAndList
+              optionList={countryList?.data.map((opt) => ({
+                ...opt,
+                option: opt.country,
+              }))}
+              placeholder={"Search By Country"}
+              onOptionClick={selectCountry}
+            />
           </Heading>
           <ChannelListSection>
-            {error && <div>Error fetching channels</div>}
+            {error && (
+              <div>Error fetching channels. Please refresh the page</div>
+            )}
             {isLoading && <div>Loading...</div>}
             {radioChannels?.data
               ?.filter((channel) => channel.https_url.length > 0)
@@ -131,7 +118,21 @@ const Radio = () => {
         </ChannelSection>
         <RightSection>
           <SectionBox>Local Channels</SectionBox>
-          <SectionBox>Genres</SectionBox>
+          <SectionBox>
+            <Heading>
+              <h2>Genre - {selectedCountry.country}</h2>
+              <SearchBox
+                placeholder={"Search Genre"}
+                handleInput={handleGenFilter}
+              />
+            </Heading>
+            <GenreSection
+              onClick={(gen) => {
+                setSelectedGen(gen);
+              }}
+              genere={genereListData}
+            />
+          </SectionBox>
         </RightSection>
       </MiddleSection>
 

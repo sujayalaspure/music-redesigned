@@ -15,32 +15,28 @@ import { Songs } from "../../songs";
 import { useGetRadioChannelsQuery } from "../../services/radioApi";
 
 const MainSection = () => {
-  const { data: radioChannels, isFetching } = useGetRadioChannelsQuery({
-    keyWord: "a",
-  });
-  console.log("LOG> [main-section/index.jsx:21]  --->", radioChannels);
-  const [songs, setsongs] = useState([]);
+  const [songs, setsongs] = useState(Songs);
   const [currentSong, setCurrentSong] = useState({});
 
-  useEffect(() => {
-    if (!isFetching) {
-      const channels = radioChannels?.data
-        .filter((channel) => channel.https_url.length > 0)
-        .map((channel) => ({
-          id: channel.id,
-          favourite: false,
-          songName: channel.name,
-          artist: channel.country,
-          song: channel.https_url.find(
-            (url) => url.last_test_result === "worked"
-          )?.url,
-          imgSrc: channel.logo.s88x88,
-        }));
-      console.log("LOG> [main-section/index.jsx:44] channels --->", channels);
-      setsongs(channels);
-      setCurrentSong(channels[0]);
-    }
-  }, [isFetching, radioChannels]);
+  // useEffect(() => {
+  //   if (!isFetching) {
+  //     const channels = radioChannels?.data
+  //       .filter((channel) => channel.https_url.length > 0)
+  //       .map((channel) => ({
+  //         id: channel.id,
+  //         favourite: false,
+  //         songName: channel.name,
+  //         artist: channel.country,
+  //         song: channel.https_url.find(
+  //           (url) => url.last_test_result === "worked"
+  //         )?.url,
+  //         imgSrc: channel.logo.s88x88,
+  //       }));
+  //     console.log("LOG> [main-section/index.jsx:44] channels --->", channels);
+  //     setsongs(channels);
+  //     setCurrentSong(channels[0]);
+  //   }
+  // }, [isFetching, radioChannels]);
 
   return (
     <MainContentWrapper>

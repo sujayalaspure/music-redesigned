@@ -18,15 +18,23 @@ export const radioApi = createApi({
   endpoints: (builder) => ({
     getRadioChannels: builder.query({
       query: ({ country = 14, page = 1 }) =>
-        createRequest(`/get/channels?country_id=${country}&page=${page}`),
+        createRequest(`/get/channels?country_id=${country}`),
     }),
     getCountries: builder.query({
       query: () => createRequest(`/get/countries`),
     }),
+    getGenres: builder.query({
+      query: (keyword) =>
+        createRequest(`/get/genres${keyword ? `?keyword=${keyword}` : ""}`),
+    }),
   }),
 });
 
-export const { useGetRadioChannelsQuery, useGetCountriesQuery } = radioApi;
+export const {
+  useGetRadioChannelsQuery,
+  useGetCountriesQuery,
+  useGetGenresQuery,
+} = radioApi;
 
 // var options = {
 //   method: "GET",

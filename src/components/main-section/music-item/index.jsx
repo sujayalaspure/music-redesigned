@@ -16,7 +16,6 @@ import {
 import IconButton from "../../IconButton";
 
 const MusicItem = ({ playing, song, setCurrentSong }) => {
-  console.log("LOG> [music-item/index.jsx:19] song --->", song);
   return (
     <MusicItemContainer
       available={song.song ? true : false}

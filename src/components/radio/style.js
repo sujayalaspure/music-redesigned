@@ -25,7 +25,7 @@ export const MiddleSection = styled.div`
 
 export const SectionBox = styled.div`
   background-color: ${COLORS.bg.primary};
-  padding: 0 16px;
+  padding: 16px 16px;
   border: 1px solid #4f1e0daa;
   border-radius: 12px;
   overflow-y: scroll;
@@ -160,4 +160,4 @@ export const CountryListWrapper = styled.ul`
   }
 `;
 
-export const GenreSection = styled.div``;
+
