@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  MoreVert,
-  Favorite,
-  FavoriteBorder,
-} from "@styled-icons/material-rounded";
+import { MoreVert, FavoriteBorder } from "@styled-icons/material-rounded";
 
 import {
   MusicItemContainer,

@@ -1,7 +1,6 @@
 {
   "name": "youtube-redesign",
-  "description": "Redesign of the YouTube homepage",
-  "homepage": "https://alaspuresujay.github.io/music-redesigned",
+  "description": "Redesign of the YouTube Music homepage",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

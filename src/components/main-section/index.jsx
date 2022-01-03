@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   MainContentWrapper,
   MusicContainer,
@@ -12,10 +12,9 @@ import HeadingAndCTA from "../HeadingAndCTA";
 import VideoItem from "./video-item";
 import Player from "../player";
 import { Songs } from "../../songs";
-import { useGetRadioChannelsQuery } from "../../services/radioApi";
 
 const MainSection = () => {
-  const [songs, setsongs] = useState(Songs);
+  // const [songs, setsongs] = useState(Songs);
   const [currentSong, setCurrentSong] = useState({});
 
   // useEffect(() => {
@@ -45,11 +44,11 @@ const MainSection = () => {
         <MusicContainer>
           <HeadingAndCTA title={"Musics"} />
 
-          {songs.map((song) => {
+          {Songs.map((song) => {
             return (
               <React.Fragment key={song.id}>
                 <MusicItem
-                  playing={currentSong.id == song.id}
+                  playing={currentSong.id === song.id}
                   setCurrentSong={setCurrentSong}
                   song={song}
                 />
@@ -60,12 +59,6 @@ const MainSection = () => {
         </MusicContainer>
         <VideoContainer>
           <HeadingAndCTA title={"Videos"} />
-          <VideoItem />
-          <VideoItem />
-          <VideoItem />
-          <VideoItem />
-          <VideoItem />
-          <VideoItem />
           <VideoItem />
           <VideoItem />
         </VideoContainer>

@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import COLORS from "../../utils/colors";
-import { Genre } from "./tempData";
 
-const GenreSection = ({ genere, onClick }) => {
-  const [selectedGen, setSelectedGen] = useState({});
+const GenreSection = ({ genere, onClick, selectedGen }) => {
   return (
     <Container>
       {genere.length === 0 && <div>No Data Found</div>}
@@ -12,10 +10,9 @@ const GenreSection = ({ genere, onClick }) => {
         <GenereItem
           onClick={() => {
             onClick(gen);
-            setSelectedGen(gen);
           }}
           key={gen.id}
-          selected={gen.id === selectedGen.id}
+          selected={gen.id === selectedGen?.id}
         >
           <img
             src="https://www.svgrepo.com/show/200200/music-player.svg"

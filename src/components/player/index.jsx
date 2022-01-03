@@ -4,7 +4,6 @@ import {
   PlayCircleFilled,
   SkipNext,
   SkipPrevious,
-  VolumeOff,
   VolumeUp,
 } from "@styled-icons/material-rounded";
 import {
@@ -85,7 +84,7 @@ const Player = ({ currentSong }) => {
         <OtherInfo>
           <span>
             {calculateTime(currentTime)}/{" "}
-            {duration != "Infinity" && !isNaN(duration)
+            {duration !== "Infinity" && !isNaN(duration)
               ? calculateTime(duration)
               : "00:00"}
           </span>

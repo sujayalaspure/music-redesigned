@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 import {
   useGetCountriesQuery,
-  useGetGenresQuery,
   useGetRadioChannelsQuery,
 } from "../../services/radioApi";
 import Banner from "../Banner";
@@ -41,8 +40,8 @@ const Radio = () => {
     },
     { skip: false }
   );
-  const { data: genereData } = useGetGenresQuery(null, { skip: true });
-  const { data: countryList } = useGetCountriesQuery(null, { skip: true });
+  // const { data: genereData } = useGetGenresQuery(null, { skip: true });
+  const { data: countryList } = useGetCountriesQuery(null, { skip: false });
   const [currentSong, setCurrentSong] = useState({});
   const [genereListData, setGenereData] = useState(Genre?.data);
   const [selectedGen, setSelectedGen] = useState(null);
@@ -127,7 +126,9 @@ const Radio = () => {
               />
             </Heading>
             <GenreSection
+              selectedGen={selectedGen}
               onClick={(gen) => {
+                console.log("LOG> [radio/index.jsx:132] gen --->", gen);
                 setSelectedGen(gen);
               }}
               genere={genereListData}
