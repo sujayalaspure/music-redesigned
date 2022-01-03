@@ -2,6 +2,8 @@
 
 Built using ReactJs, Styled-components, RapidAPI
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/bf14fe0f-2ce2-4e33-8a44-43bf440bc668/deploy-status)](https://app.netlify.com/sites/music-redesigned/deploys)
+
 ## Colors Pallets
 
 | color                | hex                                                              |
