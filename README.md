@@ -1,3 +1,7 @@
+# Music Ap Redesigned
+
+Built using ReactJs, Styled-components, RapidAPI
+
 ## Colors Pallets
 
 | color                | hex                                                              |
@@ -10,11 +14,10 @@
 | text_lightest        | ![#eadcdd](https://via.placeholder.com/10/eadcdd?text=+) #eadcdd |
 | text_light           | ![#8c836d](https://via.placeholder.com/10/8c836d?text=+) #8c836d |
 
-> ![:](https://cdn.dribbble.com/users/5080573/screenshots/17147578/media/71a6eb73cec9e79bc790aae08b377e7c.png)
-> Design By [@Mahdi.design](https://dribbble.com/mahdigolizade)
+## HomePage UI
+
+> Designed By [@Mahdi.design](https://dribbble.com/mahdigolizade) > <img height='200px' src='https://cdn.dribbble.com/users/5080573/screenshots/17147578/media/71a6eb73cec9e79bc790aae08b377e7c.png' />
 
 ## Podcast UI
 
-> ![alt](https://cdn.dribbble.com/users/941250/screenshots/12187493/media/52799da4bae0d8a577b155ea6d841a54.png)
-
-[Syed Raju](https://dribbble.com/shots/12187493/attachments/3808451?mode=media)
+> Designed By [@Syed Raju](https://dribbble.com/shots/12187493/attachments/3808451?mode=media) > <img src='https://cdn.dribbble.com/users/941250/screenshots/12187493/media/52799da4bae0d8a577b155ea6d841a54.png' height='180px' />

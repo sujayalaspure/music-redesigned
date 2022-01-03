@@ -3,11 +3,6 @@ export const Genre = {
   total: 352,
   data: [
     {
-      selected: true,
-      id: 1,
-      name: "Blues",
-    },
-    {
       id: 2,
       name: "Music",
     },
