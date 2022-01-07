@@ -33,8 +33,6 @@ const Radio = () => {
   const [filteredChannels, setFilteredChannels] = useState(radioBrowser);
   const [currentRegion, setCurrentRegion] = useState("");
 
-  const [channelByRegion, setChannelByRegion] = useState([]);
-
   useEffect(() => {
     if (!isFetching) {
       setFilteredChannels(radioBrowser);
@@ -124,6 +122,8 @@ const Radio = () => {
                 onOptionClick={(option) => setCurrentRegion(option)}
               />
             </Heading>
+            <p> currentRegion:- {currentRegion.state}</p>
+            <br /> [ Working on it ]
           </SectionBox>
           <SectionBox>
             <Heading>

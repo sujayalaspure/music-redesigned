@@ -4,7 +4,6 @@ import Sidebar from "./components/sidebar";
 import { Routes, Route } from "react-router-dom";
 import { AppContainer, AppWrapper, FooterDiv } from "./style";
 import Radio from "./components/radio";
-import { useGetRadioBrowserQuery } from "./services/radioBrowserApi";
 
 const App = () => {
   return (
