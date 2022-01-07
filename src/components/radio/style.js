@@ -109,30 +109,7 @@ export const Heading = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  .searchbar {
-    display: flex;
-    align-items: center;
-    border: 1px solid #4f1e0daa;
-    border-radius: 4px;
-    background-color: black;
-    height: 40px;
-    padding: 2px 8px;
-    input {
-      border: none;
-      color: aliceblue;
-      height: 100%;
-      flex: 1;
-      background-color: transparent;
-
-      &::placeholder {
-        color: ${COLORS.text.primary};
-      }
-
-      &:focus {
-        outline: none;
-      }
-    }
-  }
+  position: relative;
 `;
 
 export const CountriesSection = styled.div``;
@@ -159,5 +136,3 @@ export const CountryListWrapper = styled.ul`
     }
   }
 `;
-
-

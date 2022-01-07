@@ -38,14 +38,14 @@ const SearchAndList = ({ optionList, onOptionClick, placeholder }) => {
           ))}
         </CountryListWrapper>
       )}
-      <div className="searchbar">
+      <SearchBar>
         <input
           ref={inputRef}
           onChange={handleInput}
           placeholder={placeholder}
         />
         <Search size={24} />
-      </div>
+      </SearchBar>
     </>
   );
 };
@@ -71,6 +71,31 @@ const CountryListWrapper = styled.ul`
 
     &:hover {
       background-color: ${COLORS.bg.secondary}55;
+    }
+  }
+`;
+
+const SearchBar = styled.div`
+  display: flex;
+  align-items: center;
+  border: 1px solid #4f1e0daa;
+  border-radius: 4px;
+  background-color: black;
+  height: 40px;
+  padding: 2px 8px;
+  input {
+    border: none;
+    color: aliceblue;
+    height: 100%;
+    flex: 1;
+    background-color: transparent;
+
+    &::placeholder {
+      color: ${COLORS.text.primary};
+    }
+
+    &:focus {
+      outline: none;
     }
   }
 `;

@@ -6,7 +6,6 @@ const radioHeaders = {
 };
 
 const baseUrl = process.env.REACT_APP_RADIO_BASE_URL;
-// const baseUrl = "https://50k-radio-stations.p.rapidapi.com";
 
 const createRequest = (url) => ({
   url,

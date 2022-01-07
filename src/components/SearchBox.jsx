@@ -7,7 +7,7 @@ const SearchBox = ({ inputRef, handleInput, placeholder }) => {
   return (
     <Container>
       <input ref={inputRef} onChange={handleInput} placeholder={placeholder} />
-      <Search size={24} />
+      <Search size={24} className="icon" />
     </Container>
   );
 };
@@ -22,11 +22,12 @@ const Container = styled.div`
   background-color: black;
   height: 40px;
   padding: 2px 8px;
+
   input {
     border: none;
     color: aliceblue;
     height: 100%;
-    flex: 1;
+    flex: 0.8;
     background-color: transparent;
 
     &::placeholder {
